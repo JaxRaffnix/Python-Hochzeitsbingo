@@ -8,8 +8,10 @@ import csv
 # Set Constants 
 ENTRIESFILENAME = "entries.txt"
 GAMESFILENAME = "games.csv"
+LATEXFILENAME = "tables.tex"
 BOARDSIZE = 9
 GAMELIMIT = 3
+COLMAX = 3
 
 # Define Functions
 def list_of_entries(entriesfilename):
@@ -24,16 +26,34 @@ def games(entries):
         games[i] = random.sample(entries, BOARDSIZE)
     return games
 
-def writegames(games):
-    # Write each game to a row in a csv file. 
-    with open(GAMESFILENAME, "w") as gamefile:
-        writer = csv.writer(gamefile)
-        for item in games:
-            writer.writerow(item)
+# def writegames(games):
+#     # Write each game to a row in a csv file. 
+#     with open(GAMESFILENAME, "w") as gamefile:
+#         writer = csv.writer(gamefile)
+#         for item in games:
+#             writer.writerow(item)
+
+def games_to_table(games):
+    latexfile = open(LATEXFILENAME, "w")
+    # with open(LATEXFILENAME, "w") as latexfile:
+    latexfile.write("Test!abc")
+
+    for sublist in games:
+        latexfile.write("\\begin{tabular}{c|c|c}\hline")
+
+        start_index = i * COLMAX
+        end_index = min((i + 1) * COLMAX, len(data_list))
+        sublist = games[start_index:end_index]
+
+
+        sublist = sublist[:COLMAX]  # Limit the number of columns
+        for item in sublist:
+            latexfile.write(f"{item} & ")
 
 
 entries = list_of_entries(ENTRIESFILENAME)
 games = games(entries)
-writegames(games)
+# writegames(games)
+games_to_table(games)
 
 print(games)

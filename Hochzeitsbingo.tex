@@ -6,9 +6,27 @@
 \usepackage[utf8]{inputenc}
 \usepackage[ngerman]{babel}
 \usepackage[T1]{fontenc}
+\usepackage{microtype}
+
+\usepackage{csvsimple}
+
+\subject{Max \& Lisa\\05. August 2023}
+\title{Hochzeitsbingo}
+\author{}
+\date{}
 
 \begin{document}
 
+\maketitle
+
 Test!
+
+% \csvautotabular{games.csv}
+
+\begin{tabular}{c|c|c}\hline
+    \csvreader[late after line = \\\hline]
+    {games.csv}{}
+    {Test & \csvcoli}
+\end{tabular}
 
 \end{document}
