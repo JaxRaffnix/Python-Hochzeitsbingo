@@ -1,8 +1,9 @@
-import csv
+# Goal:
+# Read a list of entries, output 25 of them in random order.
 
 
-entriesfile = csv.reader("entries.csv")
-for line in entriesfile:
-    entries = tuple(line)
+# Create a tuple that contains all the possible entries
+entriesfilename = "entries.txt"
+entries = open(entriesfilename).read().split("\n")
 
 print(entries)
