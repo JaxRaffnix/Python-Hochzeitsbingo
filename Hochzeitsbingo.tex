@@ -19,14 +19,6 @@
 
 \maketitle
 
-Test!
-
-% \csvautotabular{games.csv}
-
-\begin{tabular}{c|c|c}\hline
-    \csvreader[late after line = \\\hline]
-    {games.csv}{}
-    {Test & \csvcoli}
-\end{tabular}
+\input{tables.tex}
 
 \end{document}

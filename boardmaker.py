@@ -19,41 +19,30 @@ def list_of_entries(entriesfilename):
     entries = open(entriesfilename).read().split("\n")
     return entries
 
-def games(entries):
-    # Return a list of all games. Every item contains a sublist with the gameboard.
+def create_games(entries):
+    # Return a list of all games. Every item contains a sublist with a gameboard.
     games = ["0",]*GAMELIMIT
     for i in range(GAMELIMIT):
         games[i] = random.sample(entries, BOARDSIZE)
     return games
 
-# def writegames(games):
-#     # Write each game to a row in a csv file. 
-#     with open(GAMESFILENAME, "w") as gamefile:
-#         writer = csv.writer(gamefile)
-#         for item in games:
-#             writer.writerow(item)
-
 def games_to_table(games):
-    latexfile = open(LATEXFILENAME, "w")
-    # with open(LATEXFILENAME, "w") as latexfile:
-    latexfile.write("Test!abc")
-
-    for sublist in games:
-        latexfile.write("\\begin{tabular}{c|c|c}\hline")
-
-        start_index = i * COLMAX
-        end_index = min((i + 1) * COLMAX, len(data_list))
-        sublist = games[start_index:end_index]
-
-
-        sublist = sublist[:COLMAX]  # Limit the number of columns
-        for item in sublist:
-            latexfile.write(f"{item} & ")
+    # Write a latex table for every gameboard
+    i = 0 # iterate for every game
+    with open(LATEXFILENAME, "w") as latexfile:
+        for sublist in games:
+            latexfile.write("\\begin{tabular}{c|c|c}\hline ")
+            for item in sublist:
+                i += 1
+                latexfile.write(f"{item} & ")
+                if i % COLMAX == 0:     # Break row after every third item
+                    latexfile.seek(latexfile.tell() - 3)  # Move back two positions to remove the last '& '
+                    latexfile.write("\\\\\hline ")
+            latexfile.write("\\end{tabular}\\newpage \n")
 
 
 entries = list_of_entries(ENTRIESFILENAME)
-games = games(entries)
-# writegames(games)
-games_to_table(games)
+create_games = create_games(entries)
+games_to_table(create_games)
 
-print(games)
+# print(games)
