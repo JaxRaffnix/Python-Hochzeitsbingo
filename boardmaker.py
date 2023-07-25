@@ -5,12 +5,12 @@
 import random
 
 # Constants 
-ENTRIESFILENAME = "entries.txt"
-GAMESFILENAME = "games.csv"
-TABLESFILENAME = "tables.tex"
-COLMAX = 5
-BOARDSIZE = pow(COLMAX, 2)
-GAMELIMIT = 3
+ENTRIES_FILENAME = "entries.txt"
+GAMES_FILENAME = "games.csv"
+TABLES_FILENAME = "tables.tex"
+COL_MAX = 5
+BOARD_SIZE = pow(COL_MAX, 2)
+GAME_LIMIT = 3
 
 HEADER = """\\begin{center}
         {\Large Lisa \married\ Max\\\\05. August 2023}\\\\
@@ -22,9 +22,10 @@ HEADER = """\\begin{center}
     Die ersten 10 Personen, die f\\"unf K\\"astchen in einer Reihe abgestrichen haben und somit ihre Spielkarte gel\\"ost haben, d\\"urfen sich einen Preis bei \emph{Jan Hoegen} abholen.
     \\vfill
 """
-TABLEBEGIN = f"\\begin{{tabularx}}{{\columnwidth}}{{*{{{COLMAX}}}{{|R}}|}}\hline "
-ROWBREAK = "\\\\\hline "
-TABLEEND = "\\end{tabularx}\\newpage \n"
+TABLE_BEGIN = f"\\begin{{tabularx}}{{\columnwidth}}{{*{{{COL_MAX}}}{{|R}}|}}\hline "
+ROW_BREAK = "\\\\\hline "
+TABLE_END = "\\end{tabularx}\\newpage \n"
+SIGNATURE_LINE = "\\footnotesize{\\newline Name: \\rule{2cm}{0.5pt}}"
 
 # Define Functions
 def list_of_entries(entriesfilename):
@@ -34,27 +35,27 @@ def list_of_entries(entriesfilename):
 
 def create_games(entries):
     # Return a list of all games. Every item contains a sublist with a unique gameboard.
-    games = ["0",]*GAMELIMIT
-    for i in range(GAMELIMIT):
-        games[i] = random.sample(entries, BOARDSIZE)
+    games = ["0",]*GAME_LIMIT
+    for i in range(GAME_LIMIT):
+        games[i] = random.sample(entries, BOARD_SIZE)
     return games
 
 def games_to_table(games):
     # Write a latex table for every gameboard
     i = 0 # iterate for every game
-    with open(TABLESFILENAME, "w") as latexfile:
+    with open(TABLES_FILENAME, "w") as latexfile:
         for sublist in games:
             latexfile.write(HEADER)
-            latexfile.write(TABLEBEGIN)
+            latexfile.write(TABLE_BEGIN)
             for item in sublist:
                 i += 1
-                latexfile.write(f"{item} & ")
-                if i % COLMAX == 0:     # Break the current row after every fifth item
+                latexfile.write(f"{item}{SIGNATURE_LINE} & ")
+                if i % COL_MAX == 0:     # Break the current row after every fifth item
                     latexfile.seek(latexfile.tell() - 3)    # Move back three positions to remove the last "& "
-                    latexfile.write(ROWBREAK)
-            latexfile.write(TABLEEND)
+                    latexfile.write(ROW_BREAK)
+            latexfile.write(TABLE_END)
 
 
-entries = list_of_entries(ENTRIESFILENAME)
+entries = list_of_entries(ENTRIES_FILENAME)
 games = create_games(entries)
 games_to_table(games)
