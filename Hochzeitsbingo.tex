@@ -8,18 +8,53 @@
 \usepackage[T1]{fontenc}
 \usepackage{microtype}
 
-\usepackage{libertine}
+\usepackage{palatino}
 
 \usepackage{tabularx}
+\usepackage{tikz}
 
-\subject{Max \& Lisa\\05. August 2023}
-\title{Hochzeitsbingo}
+\definecolor{ring color}{rgb}{0.31,0.31,0.34}
+\definecolor{border color}{rgb}{0.85,0.8627,0.839}
+
+\newcommand{\married}{%
+    \begin{tikzpicture}[x=1ex, y=1ex, scale=0.5, baseline=-.6ex]
+        \begin{scope}
+            \clip (-2,-.2) rectangle ++(5.5,2.2);
+            \path[draw=border color,line width=.08ex,
+                fill=ring color,even odd rule]
+                (0, 0) circle (2ex)
+                (0, 0) ellipse (1.5ex and 1.3ex);
+            \path[draw=border color,line width=.08ex,
+                fill=ring color,even odd rule]
+                (1.5, 0) circle (2ex)
+                (1.5, 0) ellipse (1.5ex and 1.3ex);
+            \end{scope}
+            \begin{scope}
+            \clip (-2,-2) rectangle ++(5.5,2.2);
+            \path[draw=border color,line width=.08ex,
+                fill=ring color,even odd rule]
+                (1.5, 0) circle (2ex)
+                (1.5, 0) ellipse (1.5ex and 1.3ex);
+            \path[draw=border color,line width=.08ex,
+                fill=ring color,even odd rule]
+                (0, 0) circle (2ex)
+                (0, 0) ellipse (1.5ex and 1.3ex);
+        \end{scope}
+    \end{tikzpicture}%
+}
+
+\renewcommand{\arraystretch}{3}
+
+\newcolumntype{R}{>{\raggedright\arraybackslash}X}
+
+\title{}
 \author{}
 \date{}
 
 \begin{document}
 
-\maketitle
+Testseite.
+\newpage
 
 \input{tables.tex}
 
