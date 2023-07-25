@@ -25,7 +25,7 @@ Die ersten 10 Personen, die f\\"unf K\\"astchen in einer Reihe abgestrichen habe
 TABLE_BEGIN = f"\\begin{{tabularx}}{{\columnwidth}}{{*{{{COL_MAX}}}{{|R}}|}}\hline "
 ROW_BREAK = "\\\\\hline "
 TABLE_END = "\\end{tabularx}\\newpage \n"
-SIGNATURE_LINE = "\\footnotesize{\\newline Name: \\rule{2cm}{0.5pt}}"
+SIGNATURE_LINE = "\\vspace{2pt}\\footnotesize{\\newline \emph{Name: }\\rule{1.4cm}{0.5pt}}"
 
 # Define Functions
 def read_entries(entries_filename):
