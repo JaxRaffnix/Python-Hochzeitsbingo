@@ -10,8 +10,8 @@
 
 \usepackage{palatino}
 
-\usepackage{tabularx}
 \usepackage{tikz}
+\usepackage{tabularray}
 
 \definecolor{ring color}{rgb}{0.31,0.31,0.34}
 \definecolor{border color}{rgb}{0.85,0.8627,0.839}
@@ -43,18 +43,13 @@
     \end{tikzpicture}%
 }
 
-\renewcommand{\arraystretch}{2}
-
-\newcolumntype{R}{>{\raggedright\arraybackslash}X}
-
 \title{}
 \author{}
 \date{}
 
-\begin{document}
+\pagestyle{empty}
 
-Testseite.
-\newpage
+\begin{document}
 
 \input{tables.tex}
 

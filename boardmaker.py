@@ -14,18 +14,17 @@ GAME_LIMIT = 3
 
 HEADER = """\\begin{center}
     {\Large Lisa \married\ Max\\\\05. August 2023}\\\\
-    \\vspace*{2em}
+    \\vspace{1em}
     \\textbf{\Huge Hochzeitsbingo}    
 \end{center}
-Ziel dieses Spiels ist es, f\\"unf aufeinander folgende Felder in horizontaler, vertikaler oder diagonaler Richtung abzustreichen.\par
-Um ein K\\"astchen abstreichen zu k\\"onnen, m\\"usst Ihr eine Person auf der Hochzeit finden, auf welche die Beschreibung des jeweiligen K\\"astchens passt. In dieses Feld tragt ihr dann den Namen der Person ein. Namen d\\"urfen doppelt verwendet werden.\par
-Die ersten 10 Personen, die f\\"unf K\\"astchen in einer Reihe abgestrichen haben und somit ihre Spielkarte gel\\"ost haben, d\\"urfen sich einen Preis bei \emph{Jan Hoegen} abholen.
+Ziel dieses Spiels ist es, f\\"unf aufeinander folgende Felder in horizontaler, vertikaler oder diagonaler Richtung auszuf\\"ullen. Um ein K\\"astchen ausf\\"ullen zu k\\"onnen, m\\"usst Ihr eine Person auf der Hochzeit finden, auf welche die Beschreibung des jeweiligen K\\"astchens zutrifft, und ihren Namen notieren. Mehrfachnennungen sind erlaubt.\par
+Die ersten zehn Personen, die ihre Spielkarte gel\\"ost haben, d\\"urfen sich bei \emph{Jan Hoegen} einen Preis abholen.
 \\vfill
 """
-TABLE_BEGIN = f"\\begin{{tabularx}}{{\columnwidth}}{{*{{{COL_MAX}}}{{|R}}|}}\hline "
-ROW_BREAK = "\\\\\hline "
-TABLE_END = "\\end{tabularx}\\newpage \n"
-SIGNATURE_LINE = "\\vspace{2pt}\\footnotesize{\\newline \emph{Name: }\\rule{1.4cm}{0.5pt}}"
+TABLE_BEGIN = "\\begin{tblr}{rows = 7em, columns = 6em, cells = {c, m}, hlines, vlines}"
+ROW_BREAK = "\\\\ "
+TABLE_END = "\\end{tblr}\\newpage \n"
+SIGNATURE_LINE = "\\vspace{0.5em}\\newline\\footnotesize{\emph{Name: }\\rule{1.4cm}{0.5pt}}"
 
 # Define Functions
 def read_entries(entries_filename):
