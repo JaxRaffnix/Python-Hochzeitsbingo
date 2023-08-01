@@ -10,7 +10,7 @@ GAMES_FILENAME = "games.csv"
 TABLES_FILENAME = "tables.tex"
 COL_MAX = 5
 BOARD_SIZE = pow(COL_MAX, 2)
-GAME_LIMIT = 3
+GAME_LIMIT = 100
 
 HEADER = """\\begin{center}
     {\Large Lisa \married\ Max\\\\05. August 2023}\\\\

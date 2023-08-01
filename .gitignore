@@ -1,4 +1,5 @@
 *.docx
 *.csv
 tables.tex
+output.tex
 build/
